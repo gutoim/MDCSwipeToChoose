@@ -68,27 +68,27 @@ static CGFloat const MDCSwipeToChooseViewLabelWidth = 65.f;
 }
 
 - (void)constructImageView {
-    _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    _imageView.clipsToBounds = YES;
-    [self addSubview:_imageView];
+    _contentView = [[UIView alloc] initWithFrame:self.bounds];
+    _contentView.clipsToBounds = YES;
+    [self addSubview:_contentView];
 }
 
 - (void)constructLikedView {
     CGRect frame = CGRectMake(MDCSwipeToChooseViewHorizontalPadding,
                               MDCSwipeToChooseViewTopPadding,
-                              CGRectGetMidX(_imageView.bounds),
+                              CGRectGetMidX(_contentView.bounds),
                               MDCSwipeToChooseViewLabelWidth);
     self.likedView = [[UIView alloc] initWithFrame:frame];
     [self.likedView constructBorderedLabelWithText:self.options.likedText
                                              color:self.options.likedColor
                                              angle:self.options.likedRotationAngle];
     self.likedView.alpha = 0.f;
-    [self.imageView addSubview:self.likedView];
+    [self.contentView addSubview:self.likedView];
 }
 
 - (void)constructNopeImageView {
-    CGFloat width = CGRectGetMidX(self.imageView.bounds);
-    CGFloat xOrigin = CGRectGetMaxX(_imageView.bounds) - width - MDCSwipeToChooseViewHorizontalPadding;
+    CGFloat width = CGRectGetMidX(self.contentView.bounds);
+    CGFloat xOrigin = CGRectGetMaxX(self.contentView.bounds) - width - MDCSwipeToChooseViewHorizontalPadding;
     self.nopeView = [[UIImageView alloc] initWithFrame:CGRectMake(xOrigin,
                                                                   MDCSwipeToChooseViewTopPadding,
                                                                   width,
@@ -97,7 +97,7 @@ static CGFloat const MDCSwipeToChooseViewLabelWidth = 65.f;
                                             color:self.options.nopeColor
                                             angle:self.options.nopeRotationAngle];
     self.nopeView.alpha = 0.f;
-    [self.imageView addSubview:self.nopeView];
+    [self.contentView addSubview:self.nopeView];
 }
 
 - (void)setupSwipeToChoose {
