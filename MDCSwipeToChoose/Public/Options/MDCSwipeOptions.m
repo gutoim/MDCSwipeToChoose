@@ -59,10 +59,10 @@
                          animations:^{
                              state.view.frame = destination;
                          } completion:^(BOOL finished) {
-                             if (finished) {
+//                             if (finished) {
                                  [state.view removeFromSuperview];
                                  state.onCompletion();
-                             }
+//                             }
                          }];
     };
 }

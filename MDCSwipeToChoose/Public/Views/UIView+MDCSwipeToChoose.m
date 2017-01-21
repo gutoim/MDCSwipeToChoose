@@ -44,6 +44,7 @@ const void * const MDCViewStateKey = &MDCViewStateKey;
 }
 
 - (void)mdc_swipe:(MDCSwipeDirection)direction {
+    
     [self mdc_swipeToChooseSetupIfNecessary];
 
     // A swipe in no particular direction "finalizes" the swipe.
@@ -65,7 +66,9 @@ const void * const MDCViewStateKey = &MDCViewStateKey;
 
     // Finalize upon completion of the animations.
     void (^completion)(BOOL) = ^(BOOL finished) {
-        if (finished) { [self mdc_finalizePosition]; }
+//        if (finished) {
+            [self mdc_finalizePosition];
+//        }
     };
 
     [UIView animateWithDuration:self.mdc_options.swipeAnimationDuration
@@ -112,6 +115,7 @@ const void * const MDCViewStateKey = &MDCViewStateKey;
 #pragma mark Translation
 
 - (void)mdc_finalizePosition {
+    
     MDCSwipeDirection direction = [self mdc_directionOfExceededThreshold];
     switch (direction) {
         case MDCSwipeDirectionRight:
@@ -144,6 +148,7 @@ const void * const MDCViewStateKey = &MDCViewStateKey;
 }
 
 - (void)mdc_exitSuperviewFromTranslation:(CGPoint)translation {
+    
     MDCSwipeDirection direction = [self mdc_directionOfExceededThreshold];
     id<MDCSwipeToChooseDelegate> delegate = self.mdc_options.delegate;
     if ([delegate respondsToSelector:@selector(view:shouldBeChosenWithDirection:)]) {
